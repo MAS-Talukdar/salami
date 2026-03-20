@@ -10,90 +10,78 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #064e3b; /* Deep Emerald */
+            background-color: #064e3b; 
             background-image: radial-gradient(circle at 50% 50%, #065f46 0%, #064e3b 100%);
+            min-height: 100vh;
         }
 
-        .gold-border {
-            border: 2px solid #d4af37;
-        }
+        .gold-border { border: 2px solid #d4af37; }
+        .gold-text { color: #d4af37; }
+        .gold-bg { background: linear-gradient(135deg, #d4af37 0%, #f1d592 50%, #d4af37 100%); }
+        .glass-card { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); }
 
-        .gold-text {
-            color: #d4af37;
-        }
-
-        .gold-bg {
-            background: linear-gradient(135deg, #d4af37 0%, #f1d592 50%, #d4af37 100%);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-        }
-
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-
+        .floating { animation: floating 3.5s ease-in-out infinite; }
         @keyframes floating {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
         }
 
         .transition-height {
             transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
         }
-
         .hidden-content { max-height: 0; }
         .visible-content { max-height: 5000px; }
     </style>
 </head>
-<body class="text-slate-800 antialiased min-h-screen">
+<body class="text-slate-800 antialiased p-4 pb-20">
 
-    <div class="max-w-2xl mx-auto px-4 py-12">
-        <!-- Header Section -->
+    <div class="max-w-2xl mx-auto py-10">
+        <!-- Header -->
         <header class="text-center mb-10">
-            <div class="inline-flex items-center justify-center w-24 h-24 gold-bg rounded-3xl shadow-2xl mb-6 floating border-4 border-emerald-900">
-                <!-- Money Logo (Money Bag) -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-emerald-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 3h12l4 6-10 12L2 9l4-6z"></path>
-                    <path d="M11 3v15"></path>
-                    <path d="M12 12h5"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M17 6h-2"></path>
-                    <path d="M7 6h2"></path>
+            <div class="inline-flex items-center justify-center w-24 h-24 gold-bg rounded-[2rem] shadow-2xl mb-6 floating border-4 border-emerald-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-emerald-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                    <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                    <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
                 </svg>
             </div>
-            <h1 class="text-4xl font-extrabold text-white tracking-tight mb-2">Eid Salami From Sufiyan</h1>
-            <p class="text-emerald-200 font-medium tracking-wide">Official Digital Registry for Eidi 2026</p>
+            <h1 class="text-4xl font-extrabold text-white tracking-tight mb-2 uppercase">Eid Salami Portal</h1>
+            <p class="text-emerald-200 font-medium tracking-wide">Registry for Digital Eidi 2024</p>
         </header>
 
-        <!-- Application Card -->
-        <main class="glass-card rounded-[2.5rem] p-8 mb-8 gold-border shadow-2xl relative">
-            <form id="salamiForm" class="space-y-6">
+        <!-- Application Form -->
+        <main class="glass-card rounded-[2.5rem] p-8 mb-8 gold-border shadow-2xl">
+            <!-- Using Web3Forms to send email without a database -->
+            <form action="https://api.web3forms.com/submit" method="POST" id="salamiForm" class="space-y-6">
+                
+                <!-- Replace 'YOUR_ACCESS_KEY_HERE' with your key from web3forms.com -->
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                <input type="hidden" name="subject" value="New Eid Salami Application">
+                <input type="hidden" name="from_name" value="Salami Portal">
+
                 <div>
-                    <label class="block text-xs font-black uppercase tracking-widest text-emerald-900 mb-2 ml-1">Applicant Full Name</label>
-                    <input type="text" id="nameInput" required placeholder="Enter your full name" 
+                    <label class="block text-xs font-black uppercase tracking-widest text-emerald-900 mb-2 ml-1">Full Name</label>
+                    <input type="text" name="name" id="nameInput" required placeholder="Your Name" 
                         class="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100 outline-none transition-all bg-slate-50">
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-black uppercase tracking-widest text-emerald-900 mb-2 ml-1">Contact Number</label>
-                        <input type="tel" id="phoneInput" required placeholder="01xxxxxxxxx" 
+                        <label class="block text-xs font-black uppercase tracking-widest text-emerald-900 mb-2 ml-1">Phone Number</label>
+                        <input type="tel" name="phone" id="phoneInput" required placeholder="01xxxxxxxxx" 
                             class="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100 outline-none transition-all bg-slate-50">
                     </div>
                     <div>
-                        <label class="block text-xs font-black uppercase tracking-widest text-emerald-900 mb-2 ml-1">Request Amount (৳)</label>
-                        <input type="number" id="amountInput" required placeholder="Amount" 
+                        <label class="block text-xs font-black uppercase tracking-widest text-emerald-900 mb-2 ml-1">Claim Amount (৳)</label>
+                        <input type="number" name="amount" id="amountInput" required placeholder="৳ Amount" 
                             class="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100 outline-none transition-all bg-slate-50">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-black uppercase tracking-widest text-emerald-900 mb-2 ml-1">Justification</label>
-                    <textarea id="reasonInput" rows="3" placeholder="Why do you deserve this Salami?" 
+                    <textarea name="message" id="reasonInput" rows="2" placeholder="Why do you need Salami?" 
                         class="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100 outline-none transition-all resize-none bg-slate-50"></textarea>
                 </div>
 
@@ -102,18 +90,17 @@
                     Submit Application
                 </button>
             </form>
-
             <div id="statusMsg" class="hidden mt-6 p-4 rounded-2xl text-center text-sm font-bold border"></div>
         </main>
 
-        <!-- History Section -->
+        <!-- History Section (Stored Locally on Browser) -->
         <div class="glass-card rounded-[2.5rem] overflow-hidden gold-border shadow-xl">
             <button onclick="toggleList()" class="w-full px-8 py-6 flex items-center justify-between hover:bg-emerald-50 transition-colors focus:outline-none">
                 <span class="text-lg font-bold text-emerald-900 flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 gold-text" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    Master Registry (<span id="count">0</span>)
+                    Local Device Registry (<span id="count">0</span>)
                 </span>
                 <svg id="chevron" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-800 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -131,8 +118,8 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <span class="block text-[10px] uppercase tracking-widest font-black text-emerald-700 mb-1">Identity Verification</span>
-                            <input type="password" id="passcodeInput" placeholder="Enter admin code" 
+                            <span class="block text-[10px] uppercase tracking-widest font-black text-emerald-700 mb-1">Admin Unlock</span>
+                            <input type="password" id="passcodeInput" placeholder="Enter sufiSalami" 
                                 class="w-full bg-transparent outline-none text-sm font-bold text-emerald-950">
                         </div>
                     </div>
@@ -142,16 +129,16 @@
                         <table id="historyTable" class="w-full text-left hidden">
                             <thead>
                                 <tr class="text-[10px] uppercase tracking-[0.2em] text-emerald-700 font-black border-b border-slate-100">
-                                    <th class="pb-4 px-2">Applicant</th>
+                                    <th class="pb-4 px-2">Name</th>
                                     <th class="pb-4 px-2">Phone</th>
                                     <th class="pb-4 px-2 text-right">Amount</th>
                                 </tr>
                             </thead>
-                            <tbody id="tableBody" class="divide-y divide-emerald-50">
+                            <tbody id="tableBody" class="divide-y divide-emerald-50 text-sm">
                             </tbody>
                         </table>
                         <div id="emptyMsg" class="text-center py-10 text-emerald-400 text-sm font-medium">
-                            No applications submitted yet.
+                            No applications found on this device.
                         </div>
                     </div>
                 </div>
@@ -159,85 +146,101 @@
         </div>
         
         <footer class="mt-12 text-center text-emerald-200/40 text-[10px] uppercase tracking-[0.3em] font-bold">
-            Cloud Secured Database &bull; Eid Mubarak
+            Email Delivery System &bull; Eid Mubarak
         </footer>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'eid-salami-final';
-        
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
+    <script>
         const ADMIN_CODE = "sufiSalami";
-        let records = [];
-        let isAdmin = false;
-
         const form = document.getElementById('salamiForm');
         const submitBtn = document.getElementById('submitBtn');
-        const passcodeInput = document.getElementById('passcodeInput');
+        const statusMsg = document.getElementById('statusMsg');
         const tableBody = document.getElementById('tableBody');
         const historyTable = document.getElementById('historyTable');
+        const countSpan = document.getElementById('count');
+        const emptyMsg = document.getElementById('emptyMsg');
         const listContent = document.getElementById('listContent');
         const chevron = document.getElementById('chevron');
+        const passcodeInput = document.getElementById('passcodeInput');
         const lockIcon = document.getElementById('lockIcon');
-        const emptyMsg = document.getElementById('emptyMsg');
-        const countSpan = document.getElementById('count');
-        const statusMsg = document.getElementById('statusMsg');
 
-        // Authentication Sequence
-        const startAuth = async () => {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                await signInWithCustomToken(auth, __initial_auth_token);
-            } else {
-                await signInAnonymously(auth);
-            }
-        };
-        startAuth();
+        let isAdmin = false;
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'registrants');
-                onSnapshot(colRef, (snapshot) => {
-                    records = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    records.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-                    renderTable();
-                }, (error) => console.error(error));
-            }
-        });
-
-        form.addEventListener('submit', async (e) => {
+        // Form Submission via Email
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (!auth.currentUser) return;
-
             submitBtn.disabled = true;
-            submitBtn.innerText = "Securing Submission...";
+            submitBtn.innerText = "Sending to Email...";
 
-            const data = {
-                name: document.getElementById('nameInput').value.trim(),
-                phone: document.getElementById('phoneInput').value.trim(),
-                amount: document.getElementById('amountInput').value.trim(),
-                reason: document.getElementById('reasonInput').value.trim(),
-                timestamp: Date.now()
-            };
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
 
-            try {
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'registrants'), data);
-                form.reset();
-                showStatus("Blessed Submission Successful!", "bg-emerald-50 text-emerald-800 border-emerald-100");
-            } catch (err) {
-                showStatus("Network glitch. Please try again.", "bg-red-50 text-red-800 border-red-100");
-            } finally {
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    showStatus("Success! Application sent to Email.", "bg-emerald-50 text-emerald-800 border-emerald-100");
+                    
+                    // Store locally for display in the table
+                    saveLocally(object);
+                    form.reset();
+                } else {
+                    showStatus(json.message, "bg-red-50 text-red-800 border-red-100");
+                }
+            })
+            .catch(error => {
+                showStatus("Something went wrong!", "bg-red-50 text-red-800 border-red-100");
+            })
+            .then(function() {
                 submitBtn.disabled = false;
                 submitBtn.innerText = "Submit Application";
-            }
+            });
         });
+
+        function saveLocally(data) {
+            let records = JSON.parse(localStorage.getItem('eid_salami_records') || '[]');
+            data.timestamp = Date.now();
+            records.unshift(data);
+            localStorage.setItem('eid_salami_records', JSON.stringify(records));
+            renderTable();
+        }
+
+        function renderTable() {
+            const records = JSON.parse(localStorage.getItem('eid_salami_records') || '[]');
+            tableBody.innerHTML = '';
+            countSpan.innerText = records.length;
+            
+            if (records.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                historyTable.classList.add('hidden');
+                return;
+            } 
+            
+            emptyMsg.classList.add('hidden');
+            historyTable.classList.remove('hidden');
+
+            records.forEach(rec => {
+                const nameDisplay = isAdmin ? rec.name : (rec.name.length > 2 ? rec.name.substring(0, 2) + "****" : rec.name[0] + "*");
+                const phoneDisplay = isAdmin ? rec.phone : (rec.phone.length > 5 ? rec.phone.substring(0, 3) + "*****" + rec.phone.slice(-2) : "****");
+                
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-emerald-50/50 transition-colors";
+                tr.innerHTML = `
+                    <td class="py-4 px-2 font-bold text-emerald-950">${nameDisplay}</td>
+                    <td class="py-4 px-2 text-slate-500 font-mono text-xs">${phoneDisplay}</td>
+                    <td class="py-4 px-2 font-black gold-text text-right">৳${rec.amount}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
 
         function showStatus(text, classes) {
             statusMsg.innerText = text;
@@ -264,42 +267,15 @@
             if (e.target.value === ADMIN_CODE) {
                 isAdmin = true;
                 lockIcon.className = "p-3 bg-emerald-600 text-white rounded-xl shadow-lg border border-emerald-700";
-                lockIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" /></svg>`;
             } else {
                 isAdmin = false;
                 lockIcon.className = "p-3 bg-white text-emerald-400 rounded-xl shadow-sm border border-emerald-100";
-                lockIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>`;
             }
             renderTable();
         });
 
-        function renderTable() {
-            tableBody.innerHTML = '';
-            countSpan.innerText = records.length;
-            
-            if (records.length === 0) {
-                emptyMsg.classList.remove('hidden');
-                historyTable.classList.add('hidden');
-                return;
-            } 
-            
-            emptyMsg.classList.add('hidden');
-            historyTable.classList.remove('hidden');
-
-            records.forEach(rec => {
-                const name = isAdmin ? rec.name : (rec.name.length > 2 ? rec.name.substring(0, 2) + "****" : rec.name[0] + "***");
-                const phone = isAdmin ? rec.phone : (rec.phone.length > 6 ? rec.phone.substring(0, 3) + "*****" + rec.phone.slice(-2) : "****");
-                
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-emerald-50/50 transition-colors";
-                tr.innerHTML = `
-                    <td class="py-4 px-2 font-bold text-emerald-950">${name}</td>
-                    <td class="py-4 px-2 text-slate-500 font-mono text-xs">${phone}</td>
-                    <td class="py-4 px-2 font-black gold-text text-right">৳${rec.amount}</td>
-                `;
-                tableBody.appendChild(tr);
-            });
-        }
+        // Init
+        renderTable();
     </script>
 </body>
 </html>
